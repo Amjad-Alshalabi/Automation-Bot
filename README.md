@@ -1,5 +1,5 @@
 # Automation-Bot
-automation bot to book an appointment at the passport platform in Syria .
+automation bot to book an appointment at the passport platform in Syria, written in python .
 
 # Requirements 
 * Download and install ChromeDriver according to your version of Google Chrome, from this site : https://chromedriver.chromium.org/downloads .
