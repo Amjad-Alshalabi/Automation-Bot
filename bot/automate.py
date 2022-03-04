@@ -50,7 +50,7 @@ def prepare_and_clean(image):
     cv2.imwrite('out_\image.png',resized)
 
 def resolve(path):
-    # it should change this path to your tesseract path
+    # you should change this path to your tesseract path
     pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
     return pytesseract.image_to_string(Image.open(path))
 
@@ -142,12 +142,16 @@ please enter your area code :
 
     def get_status(self):
         status = ''
+        count_try = 0
         while status == '':
                 try:
+                    count_try +=1
                     status = self.driver.find_element(by=By.XPATH, value='//*[@id="swal2-title"]').text.strip()
                 except NoSuchElementException as e:
                     print('Retry in 1 second')
                     time.sleep(1.5)
+                    if count_try == 5:
+                        status = 'عذرا'
         if  status == 'تحذير': 
             self.driver.find_element(by=By.XPATH, value='/html/body/div[2]/div/div[6]/button[1]').click() 
             print(f"{bcolors.WARNING}Warning the resolved captcha wrong!! : {bcolors.ENDC}",f" {bcolors.WARNING}--------- {status}{bcolors.ENDC}")
